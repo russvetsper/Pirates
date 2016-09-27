@@ -15,10 +15,9 @@ The Pirate-Ships app lets ships captain keep track of pirates on ship , user can
 * GO
 * USE pirates;
 * GO
-* CREATE TABLE ships (id INT IDENTITY(1,1), name VARCHAR(255) type VARCHAR(255));
-* CREATE TABLE pirates (id INT IDENTITY(1,1), name VARCHAR(255) rank VARCHAR(255));
-* CREATE TABLE pirates_ships (id INT(1,1), ships_id INT, pirates_id INT);
-
+* CREATE TABLE ships (id INT IDENTITY(1,1), name VARCHAR(255), type VARCHAR(255));
+* CREATE TABLE pirates (id INT IDENTITY(1,1), name VARCHAR(255), rank VARCHAR(255));
+* CREATE TABLE pirates_ships (id INT IDENTITY(1,1), ships_id INT, pirates_id INT);
 * GO
 
 ## Specs
