@@ -1,7 +1,7 @@
 using System.Data;
 using System.Data.SqlClient;
 
-namespace Pirates
+namespace PirateShip
 {
   public class DB
   {
