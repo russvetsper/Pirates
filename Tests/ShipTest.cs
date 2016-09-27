@@ -27,7 +27,7 @@ namespace PirateShip
    public void Test2_Save()
    {
 
-   Ship testShip = new Ship("blah");
+   Ship testShip = new Ship("blah","long");
 
    testShip.Save();
    Ship savedShip = Ship.GetAll()[0];
