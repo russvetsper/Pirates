@@ -146,40 +146,43 @@ namespace PirateShip.Objects
       return this.GetName().GetHashCode();
     }
 
-    public void Update(string newName)
-    {
-      SqlConnection conn = DB.Connection();
-      conn.Open();
+    public void UpdateShipName(string Name)
+       {
+         SqlConnection conn = DB.Connection();
+         conn.Open();
 
-      SqlCommand cmd = new SqlCommand("UPDATE ships SET name= @newName OUTPUT INSERTED.name WHERE id = @ShipId;", conn);
+         SqlCommand cmd = new SqlCommand("UPDATE ships SET name = @shipName output inserted.name WHERE id = @shipId;", conn);
+         SqlParameter ShipNameParameter = new SqlParameter();
+         ShipNameParameter.ParameterName = "@shipName";
+         ShipNameParameter.Value = Name;
 
-      SqlParameter newNameParameter = new SqlParameter();
-      newNameParameter.ParameterName = "@newName";
-      newNameParameter.Value = newName;
-      cmd.Parameters.Add(newNameParameter);
+         SqlParameter ShipIdParameter = new SqlParameter();
+         ShipIdParameter.ParameterName = "@shipId";
+         ShipIdParameter.Value = this.GetId();
 
-      SqlParameter ShipIdParameter = new SqlParameter();
-      ShipIdParameter.ParameterName = " @ShipId";
-      ShipIdParameter.Value = this.GetId();
-      cmd.Parameters.Add(ShipIdParameter);
-      SqlDataReader rdr = cmd.ExecuteReader();
+         cmd.Parameters.Add(ShipNameParameter);
+         cmd.Parameters.Add(ShipIdParameter);
 
-      while(rdr.Read())
-      {
-        this._name = rdr.GetString(0);
-      }
+         SqlDataReader rdr = cmd.ExecuteReader();
 
-      if (rdr !=null)
-      {
-        rdr.Close();
-      }
+         while(rdr.Read())
+         {
+           this._name = rdr.GetString(0);
+         }
 
-      if (conn !=null)
-      {
-        conn.Close();
-      }
-    }
+         if (rdr != null)
+         {
+           rdr.Close();
+         }
 
-    
+         if (rdr != null)
+         {
+           conn.Close();
+         }
+       }
+
+
+
+
   }
 }
