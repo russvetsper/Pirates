@@ -39,19 +39,15 @@ namespace PirateShip
    }
 
    [Fact]
-   public void Test3_UpdateShip()
-   {
+  public void Test6_UpdateShip()
+  {
+    Ship newShip = new Ship("pearl",1);
+    newShip.Save();
+    newShip.Update("sage");
+    string result = newShip.GetShipId();
 
-     string name = "yes";
-     Ship testShip = new Ship(name);
-     testShip.Save();
-     string newName = "no";
-
-     testShip.Update(newName);
-     string result = testShip.GetName();
-
-     Assert.Equal(newName, result);
-   }
+    Assert.Equal("sage", result);
+  }
 
    public void Dispose()
      {
