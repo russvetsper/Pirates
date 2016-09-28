@@ -146,7 +146,7 @@ namespace PirateShip.Objects
       return this.GetName().GetHashCode();
     }
 
-    public void UpdateShipName(string Name)
+    public void Update(string Name)
        {
          SqlConnection conn = DB.Connection();
          conn.Open();
@@ -176,6 +176,25 @@ namespace PirateShip.Objects
          }
 
          if (rdr != null)
+         {
+           conn.Close();
+         }
+       }
+
+       public void Delete()
+        {
+         SqlConnection conn = DB.Connection();
+         conn.Open();
+
+         SqlCommand cmd = new SqlCommand("DELETE FROM ships WHERE id = @ShipId;", conn);
+
+         SqlParameter ShipIdParameter = new SqlParameter();
+         ShipIdParameter.ParameterName= "ShipId";
+         ShipIdParameter.Value = this.GetId();
+         cmd.Parameters.Add(ShipIdParameter);
+         cmd.ExecuteNonQuery();
+
+         if (conn !=null)
          {
            conn.Close();
          }

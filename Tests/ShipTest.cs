@@ -49,6 +49,22 @@ namespace PirateShip
     Assert.Equal("sage", result);
   }
 
+  [Fact]
+  public void Test4_DeleteOneShip()
+  {
+    Ship firstShip = new Ship("sage","long",1);
+    firstShip.Save();
+
+    Ship secondShip = new Ship("blue","short",1);
+    secondShip.Save();
+
+    firstShip.Delete();
+    List<Ship>allShip = Ship.GetAll();
+    List<Ship>afterDeleteFirstShip = new List<Ship>{secondShip};
+
+    Assert.Equal(afterDeleteFirstShip,allShip);
+  }
+
 
    public void Dispose()
      {
