@@ -44,7 +44,7 @@ namespace PirateShip
     Ship newShip = new Ship("pearl",1);
     newShip.Save();
     newShip.Update("sage");
-    string result = newShip.GetShipId();
+    string result = newShip.GetShipName();
 
     Assert.Equal("sage", result);
   }
