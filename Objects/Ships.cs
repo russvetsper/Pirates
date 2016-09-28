@@ -142,10 +142,43 @@ namespace PirateShip.Objects
     }
 
     public override int GetHashCode()
-  {
-    return this.GetName().GetHashCode();
-  }
+    {
+      return this.GetName().GetHashCode();
+    }
 
+    public void Update(string newName)
+    {
+      SqlConnection conn = DB.Connection();
+      conn.Open();
 
+      SqlCommand cmd = new SqlCommand("UPDATE ships SET name= @newName OUTPUT INSERTED.name WHERE id = @ShipId;", conn);
+
+      SqlParameter newNameParameter = new SqlParameter();
+      newNameParameter.ParameterName = "@newName";
+      newNameParameter.Value = newName;
+      cmd.Parameters.Add(newNameParameter);
+
+      SqlParameter ShipIdParameter = new SqlParameter();
+      ShipIdParameter.ParameterName = " @ShipId";
+      ShipIdParameter.Value = this.GetId();
+      cmd.Parameters.Add(ShipIdParameter);
+      SqlDataReader rdr = cmd.ExecuteReader();
+
+      while(rdr.Read())
+      {
+        this._name = rdr.GetString(0);
+      }
+
+      if (rdr !=null)
+      {
+        rdr.Close();
+      }
+
+      if (conn !=null)
+      {
+        conn.Close();
+      }
+
+    }
   }
 }

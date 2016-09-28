@@ -38,6 +38,21 @@ namespace PirateShip
    Assert.Equal(testId, result);
    }
 
+   [Fact]
+   public void Test3_UpdateShip()
+   {
+
+     string name = "yes";
+     Ship testShip = new Ship(name);
+     testShip.Save();
+     string newName = "no";
+
+     testShip.Update(newName);
+     string result = testShip.GetName();
+
+     Assert.Equal(newName, result);
+   }
+
    public void Dispose()
      {
        Ship.DeleteAll();
