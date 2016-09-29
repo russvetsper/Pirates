@@ -12,7 +12,7 @@ namespace PirateShip
   {
     public ShipTest()
     {
-       DBConfiguration.ConnectionString = "Data Source=(localdb)\\mssqllocaldb;Initial Catalog=pirates_test;Integrated Security=SSPI;";
+      DBConfiguration.ConnectionString = "Data Source=(localdb)\\mssqllocaldb;Initial Catalog=pirates_test;Integrated Security=SSPI;";
     }
 
     [Fact]
@@ -24,52 +24,52 @@ namespace PirateShip
     }
 
     [Fact]
-   public void Test2_Save()
-   {
+    public void Test2_Save()
+    {
 
-   Ship testShip = new Ship("blah","long");
+      Ship testShip = new Ship("Dying Gul","long");
 
-   testShip.Save();
-   Ship savedShip = Ship.GetAll()[0];
+      testShip.Save();
+      Ship savedShip = Ship.GetAll()[0];
 
-   int result = savedShip.GetId();
-   int testId = testShip.GetId();
+      int result = savedShip.GetId();
+      int testId = testShip.GetId();
 
-   Assert.Equal(testId, result);
-   }
+      Assert.Equal(testId, result);
+    }
 
-   [Fact]
-  public void Test3_UpdateShipName()
-  {
-    Ship newShip = new Ship("pearl", "long");
-    newShip.Save();
-    newShip.Update("sage");
-    string result = newShip.GetName();
+    [Fact]
+    public void Test3_UpdateShipName()
+    {
+      Ship newShip = new Ship("Black Pearl", "long");
+      newShip.Save();
+      newShip.Update("flying dutchman");
+      string result = newShip.GetName();
 
-    Assert.Equal("sage", result);
-  }
+      Assert.Equal("flying dutchman", result);
+    }
 
-  [Fact]
-  public void Test4_DeleteOneShip()
-  {
-    Ship firstShip = new Ship("sage","long",1);
-    firstShip.Save();
+    [Fact]
+    public void Test4_DeleteOneShip()
+    {
+      Ship firstShip = new Ship("sage","long",1);
+      firstShip.Save();
 
-    Ship secondShip = new Ship("blue","short",1);
-    secondShip.Save();
+      Ship secondShip = new Ship("blue","short",1);
+      secondShip.Save();
 
-    firstShip.Delete();
-    List<Ship>allShip = Ship.GetAll();
-    List<Ship>afterDeleteFirstShip = new List<Ship>{secondShip};
+      firstShip.Delete();
+      List<Ship>allShip = Ship.GetAll();
+      List<Ship>afterDeleteFirstShip = new List<Ship>{secondShip};
 
-    Assert.Equal(afterDeleteFirstShip,allShip);
-  }
+      Assert.Equal(afterDeleteFirstShip,allShip);
+    }
 
 
-   public void Dispose()
-     {
-       Ship.DeleteAll();
-     }
+    public void Dispose()
+    {
+      Ship.DeleteAll();
+    }
 
 
   }
