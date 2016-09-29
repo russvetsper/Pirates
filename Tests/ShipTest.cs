@@ -65,10 +65,35 @@ namespace PirateShip
       Assert.Equal(afterDeleteFirstShip,allShip);
     }
 
+    [Fact]
+ public void Test5_AddShipToPirate()
+ {
+
+   Ship testShip = new Ship("Black Pearl","long");
+   testShip.Save();
+
+   Pirate testPirate1 = new Pirate("Jack Sparow","Captain");
+   testPirate1.Save();
+
+   Pirate testPirate2 = new Pirate("Jones","Captain");
+   testPirate2.Save();
+
+
+   testShip.AddPirate(testPirate1);
+   testShip.AddPirate(testPirate2);
+
+   List<Pirate> result = testShip.GetPirate();
+   List<Pirate> testList = new List<Pirate>{testPirate1, testPirate2};
+
+
+   Assert.Equal(testList, result);
+ }
+
 
     public void Dispose()
     {
       Ship.DeleteAll();
+      Pirate.DeleteAll();
     }
 
 

@@ -5,7 +5,7 @@ using System;
 
 namespace PirateShip.Objects
 {
-  public class Pirate
+  public class Pirate 
   {
     private int _id;
     private string _name;

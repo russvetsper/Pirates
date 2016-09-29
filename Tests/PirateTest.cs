@@ -24,19 +24,19 @@ namespace PirateShip
     }
 
     [Fact]
-    public void Test2_Save()
-    {
+     public void Test3_SavePirate()
+     {
+       //Arrange
+       Pirate testPirate = new Pirate("Joe","Cap");
+       testPirate.Save();
 
-      Pirate testPirate = new Pirate("blah","long");
+       //Act
+       List<Pirate> result = Pirate.GetAll();
+       List<Pirate> testList = new List<Pirate>{testPirate};
 
-      testPirate.Save();
-      Pirate savedPirate = Pirate.GetAll()[0];
-
-      int result = savedPirate.GetId();
-      int testId = testPirate.GetId();
-
-      Assert.Equal(testId, result);
-    }
+       //Assert
+       Assert.Equal(testList, result);
+     }
 
     [Fact]
     public void Test3_UpdatePirateName()
@@ -69,6 +69,8 @@ namespace PirateShip
     public void Dispose()
     {
       Pirate.DeleteAll();
+      Ship.DeleteAll();
+
     }
 
 

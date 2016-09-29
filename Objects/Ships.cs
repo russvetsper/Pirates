@@ -199,6 +199,71 @@ namespace PirateShip.Objects
          }
        }
 
+       public void AddPirate(Pirate newPirate)
+    {
+      SqlConnection conn = DB.Connection();
+      conn.Open();
+
+      SqlCommand cmd = new SqlCommand("INSERT INTO pirates_ships (pirates_id, ships_id) VALUES (@PirateId, @ShipId);", conn);
+      SqlParameter ShipIdParameter = new SqlParameter();
+      ShipIdParameter.ParameterName = "@ShipId";
+      ShipIdParameter.Value = this.GetId();
+      cmd.Parameters.Add(ShipIdParameter);
+
+
+      SqlParameter PirateIdParameter = new SqlParameter();
+      PirateIdParameter.ParameterName = "@PirateId";
+      PirateIdParameter.Value = newPirate.GetId();
+      cmd.Parameters.Add(PirateIdParameter);
+
+
+
+      cmd.ExecuteNonQuery();
+
+      if (conn != null)
+      {
+        conn.Close();
+      }
+    }
+
+    public List<Pirate> GetPirate()
+     {
+       SqlConnection conn = DB.Connection();
+       conn.Open();
+
+       SqlCommand cmd = new SqlCommand("SELECT pirates.* FROM pirates JOIN pirates_ships ON (pirates.id = pirates_ships.pirates_id) JOIN pirates ON (pirates_ships.pirates_id = pirate.id) WHERE ship.id = @ShipId",conn);
+
+       SqlParameter ShipIdParameter = new SqlParameter();
+       ShipIdParameter.ParameterName= "@ShipId";
+       ShipIdParameter.Value=this.GetId();
+       cmd.Parameters.Add(ShipIdParameter);
+
+       SqlDataReader rdr = cmd.ExecuteReader();
+       List<Pirate> Pirate = new List<Pirate> {};
+
+       while(rdr.Read())
+       {
+         int PirateId = rdr.GetInt32(0);
+         string PirateName = rdr.GetString(1);
+         string PirateRank = rdr.GetString(2);
+         Pirate newPirate = new Pirate(PirateName,PirateRank,PirateId);
+         Pirate.Add(newPirate);
+       }
+
+       if(rdr !=null)
+       {
+         rdr.Close();
+       }
+
+       if (conn != null)
+       {
+         conn.Close();
+       }
+       return Pirate;
+     }
+
+
+
 
 
 
