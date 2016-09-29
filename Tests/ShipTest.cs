@@ -66,7 +66,7 @@ namespace PirateShip
     }
 
     [Fact]
- public void Test5_AddShipToPirate()
+ public void Test5_AddPirateToShip()
  {
 
    Ship testShip = new Ship("Black Pearl","long");

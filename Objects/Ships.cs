@@ -231,11 +231,11 @@ namespace PirateShip.Objects
        SqlConnection conn = DB.Connection();
        conn.Open();
 
-       SqlCommand cmd = new SqlCommand("SELECT pirates.* FROM pirates JOIN pirates_ships ON (pirates.id = pirates_ships.pirates_id) JOIN pirates ON (pirates_ships.pirates_id = pirate.id) WHERE ship.id = @ShipId",conn);
+       SqlCommand cmd = new SqlCommand("SELECT pirates.* FROM ships JOIN pirates_ships ON (ships.id = pirates_ships.ships_id) JOIN pirates ON (pirates_ships.pirates_id = pirates.id) WHERE ships.id = @ShipsId",conn);
 
        SqlParameter ShipIdParameter = new SqlParameter();
-       ShipIdParameter.ParameterName= "@ShipId";
-       ShipIdParameter.Value=this.GetId();
+       ShipIdParameter.ParameterName= "@ShipsId";
+       ShipIdParameter.Value = this.GetId();
        cmd.Parameters.Add(ShipIdParameter);
 
        SqlDataReader rdr = cmd.ExecuteReader();
