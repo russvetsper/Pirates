@@ -26,6 +26,16 @@ namespace PirateShip.Objects
         List<Pirate> AllPirates = Pirate.GetAll();
         return View["pirates.cshtml", AllPirates];
       };
+
+      Get["/ships/new"] = _ => {
+       return View["ships_form.cshtml"];
+     };
+
+     Post["/ships/new"] = _ => {
+       Ship newShip = new Ship(Request.Form["ship-name"], Request.Form["ship-type"]);
+       newShip.Save();
+       return View["index.cshtml"];
+     };
     }
   }
 }
