@@ -66,28 +66,44 @@ namespace PirateShip
     }
 
     [Fact]
- public void Test5_AddPirateToShip()
- {
+    public void Test5_AddPirateToShip()
+    {
 
-   Ship testShip = new Ship("Black Pearl","long");
-   testShip.Save();
+      Ship testShip = new Ship("Black Pearl","long");
+      testShip.Save();
 
-   Pirate testPirate1 = new Pirate("Jack Sparow","Captain");
-   testPirate1.Save();
+      Pirate testPirate1 = new Pirate("Jack Sparow","Captain");
+      testPirate1.Save();
 
-   Pirate testPirate2 = new Pirate("Jones","Captain");
-   testPirate2.Save();
-
-
-   testShip.AddPirate(testPirate1);
-   testShip.AddPirate(testPirate2);
-
-   List<Pirate> result = testShip.GetPirate();
-   List<Pirate> testList = new List<Pirate>{testPirate1, testPirate2};
+      Pirate testPirate2 = new Pirate("Jones","Captain");
+      testPirate2.Save();
 
 
-   Assert.Equal(testList, result);
- }
+      testShip.AddPirate(testPirate1);
+      testShip.AddPirate(testPirate2);
+
+      List<Pirate> result = testShip.GetPirate();
+      List<Pirate> testList = new List<Pirate>{testPirate1, testPirate2};
+
+
+      Assert.Equal(testList, result);
+    }
+
+
+    [Fact]
+    public void Test7_FindShip()
+    {
+
+      Ship testShip = new Ship("ayaya","cap");
+      testShip.Save();
+
+      Ship foundShip = Ship.Find(testShip.GetId());
+
+      Assert.Equal(testShip, foundShip);
+    }
+
+    
+
     public void Dispose()
     {
       Ship.DeleteAll();

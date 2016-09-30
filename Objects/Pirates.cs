@@ -144,62 +144,63 @@ namespace PirateShip.Objects
     {
       return this.GetName().GetHashCode();
     }
+    
 
     public void Update(string Name)
-       {
-         SqlConnection conn = DB.Connection();
-         conn.Open();
+    {
+      SqlConnection conn = DB.Connection();
+      conn.Open();
 
-         SqlCommand cmd = new SqlCommand("UPDATE pirates SET name = @pirateName output inserted.name WHERE id = @pirateId;", conn);
-         SqlParameter PirateNameParameter = new SqlParameter();
-         PirateNameParameter.ParameterName = "@pirateName";
-         PirateNameParameter.Value = Name;
+      SqlCommand cmd = new SqlCommand("UPDATE pirates SET name = @pirateName output inserted.name WHERE id = @pirateId;", conn);
+      SqlParameter PirateNameParameter = new SqlParameter();
+      PirateNameParameter.ParameterName = "@pirateName";
+      PirateNameParameter.Value = Name;
 
-         SqlParameter PirateIdParameter = new SqlParameter();
-         PirateIdParameter.ParameterName = "@pirateId";
-         PirateIdParameter.Value = this.GetId();
+      SqlParameter PirateIdParameter = new SqlParameter();
+      PirateIdParameter.ParameterName = "@pirateId";
+      PirateIdParameter.Value = this.GetId();
 
-         cmd.Parameters.Add(PirateNameParameter);
-         cmd.Parameters.Add(PirateIdParameter);
+      cmd.Parameters.Add(PirateNameParameter);
+      cmd.Parameters.Add(PirateIdParameter);
 
-         SqlDataReader rdr = cmd.ExecuteReader();
+      SqlDataReader rdr = cmd.ExecuteReader();
 
-         while(rdr.Read())
-         {
-           this._name = rdr.GetString(0);
-         }
+      while(rdr.Read())
+      {
+        this._name = rdr.GetString(0);
+      }
 
-         if (rdr != null)
-         {
-           rdr.Close();
-         }
+      if (rdr != null)
+      {
+        rdr.Close();
+      }
 
-         if (rdr != null)
-         {
-           conn.Close();
-         }
-       }
+      if (rdr != null)
+      {
+        conn.Close();
+      }
+    }
 
-       public void Delete()
-        {
-         SqlConnection conn = DB.Connection();
-         conn.Open();
+    public void Delete()
+    {
+      SqlConnection conn = DB.Connection();
+      conn.Open();
 
-         SqlCommand cmd = new SqlCommand("DELETE FROM pirates WHERE id = @PirateId;", conn);
+      SqlCommand cmd = new SqlCommand("DELETE FROM pirates WHERE id = @PirateId;", conn);
 
-         SqlParameter PirateIdParameter = new SqlParameter();
-         PirateIdParameter.ParameterName= "PirateId";
-         PirateIdParameter.Value = this.GetId();
-         cmd.Parameters.Add(PirateIdParameter);
-         cmd.ExecuteNonQuery();
+      SqlParameter PirateIdParameter = new SqlParameter();
+      PirateIdParameter.ParameterName= "PirateId";
+      PirateIdParameter.Value = this.GetId();
+      cmd.Parameters.Add(PirateIdParameter);
+      cmd.ExecuteNonQuery();
 
-         if (conn !=null)
-         {
-           conn.Close();
-         }
-       }
+      if (conn !=null)
+      {
+        conn.Close();
+      }
+    }
 
-       public void AddShip(Ship newShip)
+    public void AddShip(Ship newShip)
     {
       SqlConnection conn = DB.Connection();
       conn.Open();
@@ -261,38 +262,38 @@ namespace PirateShip.Objects
     }
 
     public static Pirate Find(int id)
-  {
-    SqlConnection conn = DB.Connection();
-    conn.Open();
-
-    SqlCommand cmd = new SqlCommand("SELECT * FROM pirates WHERE id = @PirateId;", conn);
-    SqlParameter pirateIdParameter = new SqlParameter();
-    pirateIdParameter.ParameterName = "@PirateId";
-    pirateIdParameter.Value = id.ToString();
-    cmd.Parameters.Add(pirateIdParameter);
-    SqlDataReader rdr = cmd.ExecuteReader();
-
-    int foundPirateId = 0;
-    string foundPirateName = null;
-    string foundPirateRank = null;
-    while(rdr.Read())
     {
-      foundPirateId = rdr.GetInt32(0);
-      foundPirateName = rdr.GetString(1);
-      foundPirateRank = rdr.GetString(2);
-    }
-    Pirate foundPirate = new Pirate(foundPirateName,foundPirateRank, foundPirateId);
+      SqlConnection conn = DB.Connection();
+      conn.Open();
 
-    if (rdr != null)
-    {
-      rdr.Close();
+      SqlCommand cmd = new SqlCommand("SELECT * FROM pirates WHERE id = @PirateId;", conn);
+      SqlParameter pirateIdParameter = new SqlParameter();
+      pirateIdParameter.ParameterName = "@PirateId";
+      pirateIdParameter.Value = id.ToString();
+      cmd.Parameters.Add(pirateIdParameter);
+      SqlDataReader rdr = cmd.ExecuteReader();
+
+      int foundPirateId = 0;
+      string foundPirateName = null;
+      string foundPirateRank = null;
+      while(rdr.Read())
+      {
+        foundPirateId = rdr.GetInt32(0);
+        foundPirateName = rdr.GetString(1);
+        foundPirateRank = rdr.GetString(2);
+      }
+      Pirate foundPirate = new Pirate(foundPirateName,foundPirateRank, foundPirateId);
+
+      if (rdr != null)
+      {
+        rdr.Close();
+      }
+      if (conn != null)
+      {
+        conn.Close();
+      }
+      return foundPirate;
     }
-    if (conn != null)
-    {
-      conn.Close();
-    }
-    return foundPirate;
-  }
 
 
 

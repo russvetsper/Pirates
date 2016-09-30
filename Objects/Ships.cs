@@ -262,6 +262,41 @@ namespace PirateShip.Objects
        return Pirate;
      }
 
+     public static Ship Find(int id)
+     {
+       SqlConnection conn = DB.Connection();
+       conn.Open();
+
+       SqlCommand cmd = new SqlCommand("SELECT * FROM ships WHERE id = @ShipId;", conn);
+       SqlParameter shipIdParameter = new SqlParameter();
+       shipIdParameter.ParameterName = "@ShipId";
+       shipIdParameter.Value = id.ToString();
+       cmd.Parameters.Add(shipIdParameter);
+       SqlDataReader rdr = cmd.ExecuteReader();
+
+       int foundShipId = 0;
+       string foundShipName = null;
+       string foundShipType = null;
+       while(rdr.Read())
+       {
+         foundShipId = rdr.GetInt32(0);
+         foundShipName = rdr.GetString(1);
+         foundShipType = rdr.GetString(2);
+       }
+       Ship foundShip = new Ship(foundShipName,foundShipType, foundShipId);
+
+       if (rdr != null)
+       {
+         rdr.Close();
+       }
+       if (conn != null)
+       {
+         conn.Close();
+       }
+       return foundShip;
+     }
+
+
 
 
 
