@@ -20,7 +20,7 @@ namespace PirateShip.Objects
         List<Ship> AllShips = Ship.GetAll();
         return View["ships.cshtml", AllShips];
       };
-      
+
 
       Get["/pirates"] = _ =>
       {
@@ -53,6 +53,38 @@ namespace PirateShip.Objects
         newPirate.Save();
         return View["index.cshtml"];
       };
+
+    //   Get["pirates/{id}"] = parameters =>
+    //   {
+    //    Dictionary<string, object> model = new Dictionary<string, object>();
+    //    Pirate SelectedPirate = Pirate.Find(parameters.id);
+    //    List<Ship> PirateShips = SelectedPirate.GetShips();
+    //    List<Ship> AllShips = Ship.GetAll();
+    //    model.Add("pirate", SelectedPirate);
+    //    model.Add("pirateShips", PirateShips);
+    //    model.Add("allShips", AllShips);
+    //    return View["pirates.cshtml", model];
+    //   };
+     //
+    //  Get["ships/{id}"] = parameters =>
+    //   {
+    //    Dictionary<string, object> model = new Dictionary<string, object>();
+    //    Ship SelectedShip = Ship.Find(parameters.id);
+    //    List<Pirate> ShipPirates = SelectedShip.GetPirate();
+    //    List<Pirate> AllPirates = Pirate.GetAll();
+    //    model.Add("ship", SelectedShip);
+    //    model.Add("shipPirates", ShipPirates);
+    //    model.Add("allPirates", AllPirates);
+    //    return View["ships.cshtml", model];
+    //   };
+
+      Post["/pirates/delete"] = _ => {
+        Pirate.DeleteAll();
+        return View["index.cshtml"];
+      };
+
+
+
     }
   }
 }
