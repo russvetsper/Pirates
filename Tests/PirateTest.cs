@@ -65,6 +65,46 @@ namespace PirateShip
       Assert.Equal(afterDeleteFirstPirate,allPirate);
     }
 
+    [Fact]
+    public void Test5_AddShipToPirate()
+    {
+
+      Pirate testPirate = new Pirate("ayaya","cap");
+      testPirate.Save();
+
+      Ship testShip = new Ship("grr","small");
+      testShip.Save();
+
+      testPirate.AddShip(testShip);
+
+      List<Ship> result = testPirate.GetShips();
+      List<Ship> testList = new List<Ship>{testShip};
+
+      Assert.Equal(testList, result);
+    }
+
+    [Fact]
+      public void Test6_ReturnPiratesOnShip()
+      {
+
+        Pirate testPirate = new Pirate("ayaya","cap");
+        testPirate.Save();
+
+        Ship testShip1 = new Ship("black","long");
+        testShip1.Save();
+
+        Ship testShip2 = new Ship("white","short");
+        testShip2.Save();
+
+        testPirate.AddShip(testShip1);
+        List<Ship> result = testPirate.GetShips();
+        List<Ship> testList = new List<Ship> {testShip1};
+
+        Assert.Equal(testList, result);
+      }
+
+
+
 
     public void Dispose()
     {

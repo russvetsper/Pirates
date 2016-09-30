@@ -94,6 +94,5 @@ namespace PirateShip
       Pirate.DeleteAll();
     }
 
-ssssss
   }
 }

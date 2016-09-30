@@ -5,7 +5,7 @@ using System;
 
 namespace PirateShip.Objects
 {
-  public class Pirate 
+  public class Pirate
   {
     private int _id;
     private string _name;
@@ -198,6 +198,68 @@ namespace PirateShip.Objects
            conn.Close();
          }
        }
+
+       public void AddShip(Ship newShip)
+    {
+      SqlConnection conn = DB.Connection();
+      conn.Open();
+
+      SqlCommand cmd = new SqlCommand("INSERT INTO pirates_ships (ships_id, pirates_id) VALUES (@ShipId, @PirateId);", conn);
+
+      SqlParameter shipsIdParameter = new SqlParameter();
+      shipsIdParameter.ParameterName = "@ShipId";
+      shipsIdParameter.Value = newShip.GetId();
+      cmd.Parameters.Add(shipsIdParameter);
+
+      SqlParameter pirateIdParameter = new SqlParameter();
+      pirateIdParameter.ParameterName = "@PirateId";
+      pirateIdParameter.Value = this.GetId();
+      cmd.Parameters.Add(pirateIdParameter);
+
+      cmd.ExecuteNonQuery();
+
+      if (conn != null)
+      {
+        conn.Close();
+      }
+    }
+
+    public List<Ship> GetShips()
+    {
+      SqlConnection conn = DB.Connection();
+      conn.Open();
+
+      SqlCommand cmd = new SqlCommand("SELECT ships.* FROM pirates JOIN pirates_ships ON (pirates.id = pirates_ships.pirates_id) JOIN ships ON (pirates_ships.ships_id = ships.id) WHERE pirates.id = @PirateId",conn);
+
+      SqlParameter pirateIdParameter = new SqlParameter();
+      pirateIdParameter.ParameterName= "@PirateId";
+      pirateIdParameter.Value=this.GetId();
+      cmd.Parameters.Add(pirateIdParameter);
+
+      SqlDataReader rdr = cmd.ExecuteReader();
+      List<Ship> ships = new List<Ship> {};
+
+      while(rdr.Read())
+      {
+        int shipsId = rdr.GetInt32(0);
+        string shipsName = rdr.GetString(1);
+        string shipType = rdr.GetString(2);
+        Ship newShip = new Ship(shipsName, shipType, shipsId);
+        ships.Add(newShip);
+      }
+
+      if(rdr !=null)
+      {
+        rdr.Close();
+      }
+
+      if (conn != null)
+      {
+        conn.Close();
+      }
+      return ships;
+    }
+
 
 
 
