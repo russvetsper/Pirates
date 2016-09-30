@@ -1,0 +1,18 @@
+<h1>Ships</h1>
+@if (Model.Count != 0)
+{
+  <ul>
+    @foreach (var ship in Model)
+    {
+      <li><a href='/ships/@ship.GetId()'>@ship.GetName()</a>
+        | <a href="/ship/edit/@ship.GetId()">Edit</a>
+        | <a href="ship/delete/@ship.GetId()">Delete</a>
+      </li>
+    }
+  </ul>
+  <form action="/ships/delete" method="post">
+    <button type="submit">Clear Ships</button>
+  </form>
+}
+<h3><a href="/ships/new">Add ship</a></h3>
+<h3><a href="/">Return Home</a></h3>
