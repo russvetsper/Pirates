@@ -103,6 +103,18 @@ namespace PirateShip
         Assert.Equal(testList, result);
       }
 
+      [Fact]
+  public void Test7_FindPirate()
+  {
+    
+    Pirate testPirate = new Pirate("ayaya","cap");
+    testPirate.Save();
+
+    Pirate foundPirate = Pirate.Find(testPirate.GetId());
+
+    Assert.Equal(testPirate, foundPirate);
+  }
+
 
 
 

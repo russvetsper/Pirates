@@ -260,6 +260,40 @@ namespace PirateShip.Objects
       return ships;
     }
 
+    public static Pirate Find(int id)
+  {
+    SqlConnection conn = DB.Connection();
+    conn.Open();
+
+    SqlCommand cmd = new SqlCommand("SELECT * FROM pirates WHERE id = @PirateId;", conn);
+    SqlParameter pirateIdParameter = new SqlParameter();
+    pirateIdParameter.ParameterName = "@PirateId";
+    pirateIdParameter.Value = id.ToString();
+    cmd.Parameters.Add(pirateIdParameter);
+    SqlDataReader rdr = cmd.ExecuteReader();
+
+    int foundPirateId = 0;
+    string foundPirateName = null;
+    string foundPirateRank = null;
+    while(rdr.Read())
+    {
+      foundPirateId = rdr.GetInt32(0);
+      foundPirateName = rdr.GetString(1);
+      foundPirateRank = rdr.GetString(2);
+    }
+    Pirate foundPirate = new Pirate(foundPirateName,foundPirateRank, foundPirateId);
+
+    if (rdr != null)
+    {
+      rdr.Close();
+    }
+    if (conn != null)
+    {
+      conn.Close();
+    }
+    return foundPirate;
+  }
+
 
 
 
