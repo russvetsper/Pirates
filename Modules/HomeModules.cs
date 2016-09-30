@@ -20,6 +20,12 @@ namespace PirateShip.Objects
         List<Ship> AllShips = Ship.GetAll();
         return View["ships.cshtml", AllShips];
       };
+
+      Get["/pirates"] = _ =>
+      {
+        List<Pirate> AllPirates = Pirate.GetAll();
+        return View["pirates.cshtml", AllPirates];
+      };
     }
   }
 }
