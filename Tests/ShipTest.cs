@@ -91,7 +91,7 @@ namespace PirateShip
 
 
     [Fact]
-    public void Test7_FindShip()
+    public void Tes67_FindShip()
     {
 
       Ship testShip = new Ship("ayaya","cap");
@@ -102,7 +102,7 @@ namespace PirateShip
       Assert.Equal(testShip, foundShip);
     }
 
-    
+
 
     public void Dispose()
     {
