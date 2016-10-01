@@ -54,7 +54,7 @@ namespace PirateShip.Objects
         return View["index.cshtml"];
       };
 
-      Get["ships/{id}"] = parameters =>
+      Get["pirates/{id}"] = parameters =>
       {
         Dictionary<string, object> model = new Dictionary<string, object>();
         Pirate SelectedPirate = Pirate.Find(parameters.id);
