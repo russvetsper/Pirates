@@ -1,0 +1,17 @@
+a:link, a:visited {
+
+    color: #808080;
+    padding: 14px 25px;
+    text-align: center;
+    font-family: 'Nosifer', cursive;
+    display: table-caption;
+
+}
+
+
+
+h1 {
+  font-family: 'Nosifer', cursive;
+  font-size: 8.5em;
+
+}
