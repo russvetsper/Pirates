@@ -1,0 +1,26 @@
+h1>pirate</h1>
+<h2>pirate: @Model["pirate"].GetName()</h2>
+
+@if (@Model["pirateShips"].Count != 0)
+{
+  <h4>Pirate on the ship:</h4>
+  <ul>
+    @foreach (var ship in @Model["pirateShips"])
+    {
+      <li>@ship.GetName()</li>
+    }
+  </ul>
+}
+<h3>Add ship to  pirate</h3>
+<form action='/pirate/add_ship' method='post'>
+  <input id='pirate-id' name='pirate-id' type='hidden' value='@Model["pirate"].GetId()'>
+  <label for='ship-id'>Select a ship</label>
+  <select id='ship-id' name='ship-id' type='text'>
+    @foreach (var ship in @Model["allShips"])
+    {
+      <option value='@ship.GetId()'>@ship.GetName()</option>
+    }
+  </select>
+  <button type='submit'>Add</button>
+</form>
+<p><a href="/">Return</a></p>

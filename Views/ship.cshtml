@@ -6,7 +6,8 @@
   <ul>
     @foreach (var pirate in @Model["shipPirates"])
     {
-      <li>@pirate.GetName()</li>
+      <li>@pirate.GetName()<br>@pirate.GetRank()</li>
+
     }
   </ul>
 }

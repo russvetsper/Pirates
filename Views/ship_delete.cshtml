@@ -1,0 +1,8 @@
+<h2>Delete ship and pirate</h2>
+<h3>@Model.GetName()</h3>
+
+<form action="/ship/delete/@Model.GetId()" method="post">
+  <input type="hidden" name="_method" value="DELETE">
+  <button type="submit">Delete</button>
+</form>
+<p><a href="/">Return Home</a></p>
