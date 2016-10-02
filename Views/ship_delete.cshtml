@@ -1,8 +1,10 @@
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
 <link rel="stylesheet" href="/Content/styles.css" >
 <link href="https://fonts.googleapis.com/css?family=Nosifer" rel="stylesheet">
-<h2>Delete ship and pirate</h2>
-<h3>@Model.GetName()</h3>
+<body background="https://lh3.googleusercontent.com/-9NoUmE5iXG4/VYSFFpKwbtI/AAAAAAAAF5o/98XdHGdI-zo/w1920-h1080/pirates-ship-on-fire-wallpaper-1920-1080-7349.jpg">
+
+<h1>Delete ship and pirate?</h1>
+<h2 class="font-effect-fire-animation">@Model.GetName()</h2>
 
 <form action="/ship/delete/@Model.GetId()" method="post">
   <input type="hidden" name="_method" value="DELETE">

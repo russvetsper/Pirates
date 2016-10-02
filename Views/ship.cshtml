@@ -1,11 +1,13 @@
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
 <link rel="stylesheet" href="/Content/styles.css" >
-<link href="https://fonts.googleapis.com/css?family=font-effect-fire-animation" rel="stylesheet">
-<h2>Ship @Model["ship"].GetName()</h2>
+<link href="https://fonts.googleapis.com/css?family=Nosifer" rel="stylesheet">
+<body background="http://wallpaper.zone/img/3316966.jpg">
+
+<h2 class="font-effect-fire-animation">Ship @Model["ship"].GetName()</h2>
 
 @if (@Model["shipPirates"].Count != 0)
 {
-  <h4>Pirates on ship:</h4>
+  <h3>Pirates on ship:</h3>
   <ul>
     @foreach (var pirate in @Model["shipPirates"])
     {
@@ -14,16 +16,16 @@
     }
   </ul>
 }
-<h4>Add  pirate to ship:</h4>
+<h3 class="font-effect-fire-animation">Add pirate to ship:</h3>
 <form action='/ship/add_pirate' method='post'>
   <input id='ship-id' name='ship-id' type='hidden' value='@Model["ship"].GetId()'>
-  <label for='pirate-id'>Select pirate</label>
+  <label class="font-effect-fire-animation" for='pirate-id'>Select pirate</label>
   <select id='pirate-id' name='pirate-id' type='text'>
     @foreach (var pirate in @Model["allPirates"])
     {
       <option value='@pirate.GetId()'>@pirate.GetName()</option>
     }
   </select>
-  <button type='submit'>Add</button>
+  <button class="font-effect-fire-animation" type='submit'>Add</button>
 </form>
-<p><a href="/">Return Home</a></p>
+<h4><a style="color:#FFC125;" href="/">Return home</a></h4>

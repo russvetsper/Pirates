@@ -2,20 +2,19 @@
 @import  "https://fonts.googleapis.com/css?family=effect-fragile";
 a:link, a:visited {
 
-    color: #808080;
-    padding: 14px 25px;
-    text-align: center;
-    font-family: 'Nosifer', cursive;
-    display: table-caption;
+  color: #808080;
+  padding: 14px 25px;
+  text-align: center;
+  font-family: 'Nosifer', cursive;
+  display: table-caption;
 
 }
-
 
 
 h1 {
   font-family: 'Nosifer', cursive;
   font-size: 8.5em;
-  color: #FAEBD7
+  color: #808080;
   text-align: center;
 }
 
@@ -37,5 +36,32 @@ h4 {
   font-family: fgragile;
   font-size: 30px;
   margin: 40px 0;
+  color: #808080;
+
+}
+
+button {
+  font-family: 'Nosifer', cursive;
+  background-color: black;
+  font-size: 1.5em;
+  color: #808080;
+}
+
+ol {
+  font-size: 30px;
+}
+
+input[type="text"]
+{
+  background: transparent;
+  width: 276px;
+  height: 48px;
+  border: 1.5px solid black;
+  placeholder: black;
+  display:block;
+  font-size:18px;
+  padding-left:20px;
+  padding-right:20px;
+  margin-bottom:20px;
 
 }
