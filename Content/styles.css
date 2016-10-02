@@ -1,3 +1,5 @@
+@import "http://fonts.googleapis.com/css?family=Rancho&effect=fire-animation";
+@import  "https://fonts.googleapis.com/css?family=effect-fragile";
 a:link, a:visited {
 
     color: #808080;
@@ -13,5 +15,27 @@ a:link, a:visited {
 h1 {
   font-family: 'Nosifer', cursive;
   font-size: 8.5em;
+  color: #FAEBD7
+  text-align: center;
+}
+
+h2 {
+  font-family: fire;
+  font-size: 60px;
+  margin: 40px 0;
+  text-align: center;
+}
+
+h3 {
+  font-family: fire;
+  font-size: 30px;
+  margin: 40px 0;
+
+}
+
+h4 {
+  font-family: fgragile;
+  font-size: 30px;
+  margin: 40px 0;
 
 }

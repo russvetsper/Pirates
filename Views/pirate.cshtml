@@ -1,29 +1,33 @@
-<body background="http://www.ryylxjw.com/data/out/149/40530865-pirates-wallpapers.jpg">
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
+<link rel="stylesheet" href="../Content/styles.css" >
+<link href="https://fonts.googleapis.com/css?family=Nosifer" rel="stylesheet">
 
-<h1>pirate</h1>
-<h2>Pirate: @Model["pirate"].GetName()<br>Rank: @Model["pirate"].GetRank()</h2>
+<body background="https://s-media-cache-ak0.pinimg.com/236x/97/03/2c/97032cc2f4e5eeb6482677d6148dc3a2.jpg">
+
+<h1 class="font-effect-fire-animation" text-align: center;>pirate</h1>
+<h2 class="font-effect-fire-animation">Pirate: @Model["pirate"].GetName()<br>Rank: @Model["pirate"].GetRank()</h2>
 
 @if (@Model["pirateShips"].Count != 0)
 {
-  <h4>Pirate on the ship:</h4>
-  <ul>
+  <h4 >Pirate on the ship:</h4>
+  <ol>
     @foreach (var ship in @Model["pirateShips"])
     {
       <li>@ship.GetName()</li>
     }
-  </ul>
+  </ol>
 }
-<h3>Add ship to  pirate</h3>
+<h3 class="font-effect-fire-animation" class="font-effect-fire-animation">Add ship to  pirate</h3>
 <form action='/pirate/add_ship' method='post'>
   <input id='pirate-id' name='pirate-id' type='hidden' value='@Model["pirate"].GetId()'>
-  <label for='ship-id'>Select a ship</label>
+  <label class="font-effect-fire-animation" for='ship-id'>Select a ship</label>
   <select id='ship-id' name='ship-id' type='text'>
     @foreach (var ship in @Model["allShips"])
     {
-      <option value='@ship.GetId()'>@ship.GetName()</option>
+      <option class="font-effect-fire-animation" value='@ship.GetId()'>@ship.GetName()</option>
     }
   </select>
-  <button type='submit'>Add</button>
+  <button class="font-effect-fire-animation" type='submit'>Add</button>
 </form>
-<p><a href="/">Return</a></p>
+<p><a class="font-effect-fire-animation" href="/">Return</a></p>
 </body>
