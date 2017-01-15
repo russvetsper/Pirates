@@ -40,7 +40,7 @@ The Pirate-Ships app lets ships captain keep track of pirates on ship , user can
 None
 
 ## Technologies Used
- C#, Nancy, Razor, html
+ C#, Nancy, Razor, HTML, CSS, SQL
 
 ### License
 Copyright (c) 2016 _**Russ Vetsper **_
